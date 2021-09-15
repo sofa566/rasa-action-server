@@ -21,10 +21,10 @@ RUN apk update && apk upgrade  \
 ENV TZ=Asia/Taipei
 
 RUN addgroup -S rasa && adduser -S rasa -G rasa
-# VOLUME /t
+VOLUME /actions_jar
 USER rasa
 ARG DEPENDENCY=/workspace/app/target/dependency
 COPY --from=build ${DEPENDENCY}/BOOT-INF/lib /app/lib
 COPY --from=build ${DEPENDENCY}/META-INF /app/META-INF
 COPY --from=build ${DEPENDENCY}/BOOT-INF/classes /app
-ENTRYPOINT ["java","-noverify","-XX:TieredStopAtLevel=1","-cp","app:app/lib/*","com.interinfo.rasa_action.server.RasaActionServer"]
+ENTRYPOINT ["java","-noverify","-XX:TieredStopAtLevel=1","-cp","app:/actions_jar/*:app/lib/*","com.interinfo.rasa_action.server.RasaActionServer"]
