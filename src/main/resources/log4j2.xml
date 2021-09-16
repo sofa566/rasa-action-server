@@ -8,7 +8,7 @@
 
 	<Loggers>
 		<!-- Action server -->
-		<Logger name="io.github.rbajek.rasa.action.server" level="${env:LOG_LEVEL:-info}" additivity="false">
+		<Logger name="com.interinfo.rasa_action.server" level="${env:LOG_LEVEL:-debug}" additivity="false">
 			<AppenderRef ref="LogToConsole"/>
 		</Logger>
 		<!-- Jetty HTTP Server -->
